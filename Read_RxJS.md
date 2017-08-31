@@ -14,3 +14,43 @@
 
 `Observer`는 중요한 이벤트가 발생했을 때 모든 `Subject`에게 알려주며, 주로 이벤트 객체의 형태로 메세지를 `Subject`에게 전달한다.
 
+
+아래의 예제는 ES5를 기준으로 옵저버 패턴을 구현한 한 예다.
+```javascript
+
+var publisher = {
+    subscribers: {
+       any: []
+    },
+    subscribe: function(fn, type) {
+        type = type || 'any';
+        if(typeof this.subscribers[type] === 'undefined') {
+            this.subscribe[type] = [];
+        }
+        this.subscribers[type].push(fn);
+    },
+    unsubscribe: function(fn, type) {
+        this.visitSubscribers('unsubscribe', fn, type);
+    },
+    publish: function(publication, type) {
+        this.visitSubscribers('publish', publication, type);
+    },
+    visitSubscribers: function (action, arg, type) {
+        var pubtype = type || 'any',
+            subscribers = this.subscribers[pubtype],
+            i,
+            max = subscribers.length;
+
+        for(i = 0; i < max; i+= 1) {
+            if(action === 'publish') {
+                subscribers[i](arg);
+            } else {
+                if(subscribers[i] === arg) {
+                    subscribers.splice(i, 1);
+                }
+            }
+        }
+    }
+};
+
+```
