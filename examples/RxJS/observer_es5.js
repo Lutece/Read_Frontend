@@ -1,3 +1,5 @@
+// Observer 패턴 또는 커스텀 이벤트 패턴
+
 var publisher = { //Observer 패턴 구현 [ like system ]
     subscribers: {
         any: []
@@ -75,7 +77,7 @@ var joe = {
         console.log(paper + '를 읽었습니다.');
     },
     sundayPreNap: function(monthly) {
-        console.log('잠들기 전에 ' + monthly + ' 를 읽고 있습니다.');
+     ;//   console.log('잠들기 전에 ' + monthly + ' 를 읽고 있습니다.');
     }
 };
 
